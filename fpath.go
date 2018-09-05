@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+"strings"
+"github.com/atotto/clipboard"
 	"path"
 )
 
@@ -22,8 +24,17 @@ func abspath(fpath string) (apath string) {
 
 func main() {
 	paths := os.Args[1:]
+	var fpaths []string
 
-	for _, fpath := range paths {
-		fmt.Println(abspath(fpath))
+	for _, f := range paths {
+		fpath := abspath(f)
+		fmt.Println(fpath)
+		fpaths = append(fpaths, fpath)
+	}
+
+	err := clipboard.WriteAll(strings.Join(fpaths, "\n"))
+
+	if err != nil {
+		fmt.Println("cannot copy to clipboard")
 	}
 }
