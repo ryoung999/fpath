@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/atotto/clipboard"
 	"os"
-"strings"
-"github.com/atotto/clipboard"
 	"path"
+	"strings"
 )
 
 func abspath(fpath string) (apath string) {
